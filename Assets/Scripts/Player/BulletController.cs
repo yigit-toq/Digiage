@@ -1,44 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> bulletList = new();
-
     [SerializeField] private GameObject bullet, barrel;
 
     private float index;
 
     private void Update()
     {
-        if (index > Singleton.BulletCooldown)
+        if (Singleton.Move)
         {
-            GameObject obj = Instantiate(bullet, barrel.transform.position, Quaternion.identity);
+            if (index > Singleton.FireRate)
+            {
+                GameObject obj = Instantiate(bullet, barrel.transform.position, Quaternion.identity);
 
-            obj.transform.Find("Object").gameObject.AddComponent<Bullet>();
+                Handheld.Vibrate();
 
-            bulletList.Add(obj);
+                obj.AddComponent<Bullet>();
 
-            index = 0;
-        }
-        index += Time.deltaTime;
-
-        Fire();
-    }
-
-    private void Fire()
-    {
-        if (bulletList == null)
-            return;
-
-        List<GameObject> bulletsToProcess = new(bulletList);
-
-        foreach (GameObject bullet in bulletsToProcess)
-        {
-            if (bullet)
-                bullet.transform.Translate(Singleton.BulletSpeed * Singleton.Speed * Time.deltaTime * Vector3.forward);
+                index = 0;
+            }
+            index += Time.deltaTime;
         }
     }
 
@@ -46,27 +32,38 @@ public class BulletController : MonoBehaviour
     {
         private void Start()
         {
-            Destroy(transform.parent.gameObject, Singleton.BulletRange);
+            Destroy(gameObject, Singleton.FireRange);
+        }
+
+        private void Update()
+        {
+            transform.Translate(Singleton.BulletSpeed * Singleton.Speed * Time.deltaTime * Vector3.forward);
         }
 
         private void OnCollisionEnter(Collision other)
         {
-            Destroy(transform.parent.gameObject);
+            Destroy(gameObject);
         }
+
+        static int magazineCount = 0;
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.CompareTag("Magazine"))
             {
-                // Þarjör dolumu saðlanacak ve banda fýrlamasý saðlanacak.
-            }
+                if (magazineCount != 6)
+                {
+                    magazineCount++;
 
+                    other.gameObject.transform.Find("Text").GetComponent<TextMeshPro>().text = magazineCount.ToString();
+                }
+            }
             if (other.gameObject.CompareTag("Wall"))
             {
                 // Duvarýn çeþidine göre iþlemlerin gerçekleþmesi saðlanacak.
             }
 
-            Destroy(transform.parent.gameObject);
+            Destroy(gameObject);
         }
     }
 }

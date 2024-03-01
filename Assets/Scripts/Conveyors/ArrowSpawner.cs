@@ -28,11 +28,12 @@ public class ArrowSpawner : MonoBehaviour
     {
         foreach (GameObject obj in arrowList)
         {
-            obj.transform.Translate(2 * Singleton.Speed * Time.deltaTime * Vector3.forward);
-            
-            if (obj.transform.position.z > 100f)
+            if (obj != null)
             {
-                obj.transform.localPosition = Vector3.zero;
+                obj.transform.Translate(2 * Singleton.Speed * Time.deltaTime * Vector3.forward);
+
+                if (obj.transform.position.z > 100f)
+                    obj.transform.localPosition = Vector3.zero;
             }
         }
     }
