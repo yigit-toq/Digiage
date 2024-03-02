@@ -11,7 +11,9 @@ public class UpgradeArea : MonoBehaviour
 
     [SerializeField] private string[] upgradeText;
 
-    [SerializeField] private int value;
+    [SerializeField] private float value;
+
+    private char sign;
 
     [SerializeField] private Color32[] colors;
 
@@ -21,7 +23,6 @@ public class UpgradeArea : MonoBehaviour
 
         value = Random.Range(-6, 6) * 5;
 
-        char sign;
         if (value < 0)
         {
             spriteRenderer.color = colors[1];
@@ -32,6 +33,41 @@ public class UpgradeArea : MonoBehaviour
             spriteRenderer.color = colors[0];
             sign = '+';
         }
-        upgradeTMP[1].text = sign + Mathf.Abs(value).ToString(); 
+        upgradeTMP[1].text = sign + Mathf.Abs(value).ToString();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Bullet"))
+        {
+            if (value >= 0)
+            {
+                spriteRenderer.color = colors[0];
+                sign = '+';
+            }
+
+            value++;
+            upgradeTMP[1].text = sign + Mathf.Abs(value).ToString();
+
+            Destroy(other.gameObject);
+        }
+
+        //Deðerler güncellenebilir
+        if(other.gameObject.CompareTag("Player"))
+        {
+            if (upgradeTMP[0].text == upgradeText[0])
+            {
+                Singleton.FireRate -= value / 100;
+            }
+            else
+            {
+                Singleton.FireRange += value / 100;
+            }
+
+            Debug.LogWarning("Rate" + Singleton.FireRate);
+            Debug.LogWarning("Range" + Singleton.FireRange);
+
+            Destroy(gameObject);
+        }
     }
 }

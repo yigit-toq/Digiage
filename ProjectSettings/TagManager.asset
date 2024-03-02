@@ -8,6 +8,9 @@ TagManager:
   - Wall
   - Bullet
   - Trap
+  - Hexagon
+  - YearZone
+  - GetMagazine
   layers:
   - Default
   - TransparentFX

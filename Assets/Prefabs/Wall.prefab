@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 190295369936882064}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.75, y: 0, z: 5.56}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.4, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -158,6 +158,7 @@ MonoBehaviour:
   - FIRE RATE
   - FIRE RANGE
   value: 0
+  sign: 68
   colors:
   - serializedVersion: 2
     rgba: 4278255370

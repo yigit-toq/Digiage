@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,11 +12,15 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float horizontalSpeed;
 
+    [SerializeField] private TextMeshPro yearText;
+
     private void Awake()
     {
         playerRigidbody = GetComponent<Rigidbody>();
 
         horizontalSpeed = 5;
+
+        yearText.text = Singleton.GunYear.ToString();
     }
 
     //Sað ve sola hareket edilmesini saðlayan kod düzenlenecek.
@@ -56,5 +60,13 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Singleton.Move = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("GetMagazine"))
+        {
+            Debug.LogWarning("Þarjör Alýndý");
+        }
     }
 }

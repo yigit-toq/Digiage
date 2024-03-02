@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -10,6 +11,13 @@ public class BulletController : MonoBehaviour
 
     private float index;
 
+    [SerializeField] private Animator gunAnimator;
+
+    private void Start()
+    {
+        index = Singleton.FireRate;
+    }
+
     private void Update()
     {
         if (Singleton.Move)
@@ -17,6 +25,8 @@ public class BulletController : MonoBehaviour
             if (index > Singleton.FireRate)
             {
                 GameObject obj = Instantiate(bullet, barrel.transform.position, Quaternion.identity);
+
+                gunAnimator.SetTrigger("Recoil");
 
                 Handheld.Vibrate();
 
@@ -30,6 +40,9 @@ public class BulletController : MonoBehaviour
 
     private class Bullet : MonoBehaviour
     {
+        static int magazineCount = 0;
+        static int hexagonCount = 0;
+
         private void Start()
         {
             Destroy(gameObject, Singleton.FireRange);
@@ -37,15 +50,25 @@ public class BulletController : MonoBehaviour
 
         private void Update()
         {
-            transform.Translate(Singleton.BulletSpeed * Singleton.Speed * Time.deltaTime * Vector3.forward);
+            transform.Translate((Singleton.BulletSpeed) * Time.deltaTime * Vector3.forward);
         }
 
-        private void OnCollisionEnter(Collision other)
+        private void OnCollisionEnter(Collision collision)
         {
+            if (collision.gameObject.CompareTag("Hexagon"))
+            {
+                string str = collision.transform.Find("Text").GetComponent<TextMeshPro>().text;
+
+                hexagonCount = int.Parse(str);
+                hexagonCount--;
+                str = hexagonCount.ToString();
+                collision.transform.Find("Text").GetComponent<TextMeshPro>().text = str;
+                if (hexagonCount == 0)
+                    Destroy(collision.transform.parent.gameObject);
+            }
+
             Destroy(gameObject);
         }
-
-        static int magazineCount = 0;
 
         private void OnTriggerEnter(Collider other)
         {
@@ -55,15 +78,42 @@ public class BulletController : MonoBehaviour
                 {
                     magazineCount++;
 
-                    other.gameObject.transform.Find("Text").GetComponent<TextMeshPro>().text = magazineCount.ToString();
+                    other.transform.parent.Find("Text").GetComponent<TextMeshPro>().text = magazineCount.ToString();
                 }
+                Destroy(gameObject);
             }
-            if (other.gameObject.CompareTag("Wall"))
+            if(other.gameObject.CompareTag("YearZone"))
             {
-                // Duvarýn çeþidine göre iþlemlerin gerçekleþmesi saðlanacak.
+                switch (other.gameObject.name)
+                {
+                    case "1":
+                        break;
+                    case "2":
+                        break;
+                    case "3":
+                        break;
+                }
+                Destroy(gameObject);
             }
+        }
 
-            Destroy(gameObject);
+        private IEnumerator BounceEffect(Transform transform)
+        {
+            float scaleFactor = 1.2f;
+            float animationTime = 0.25f;
+
+            Vector3 targetScale = transform.localScale * scaleFactor;
+            for (float t = 0.0f; t < animationTime; t += Time.deltaTime)
+            {
+                transform.localScale = Vector3.Lerp(transform.localScale, targetScale, t / animationTime);
+            }
+            yield return null;
+
+            targetScale = transform.localScale / scaleFactor;
+            for (float t = 0.0f; t < animationTime; t += Time.deltaTime)
+            {
+                transform.localScale = Vector3.Lerp(transform.localScale, targetScale, t / animationTime);
+            }
         }
     }
 }
