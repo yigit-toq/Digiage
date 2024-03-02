@@ -5,13 +5,13 @@ using UnityEngine.EventSystems;
 
 public class Manager : MonoBehaviour
 {
-    public GameObject Slide;
+    [SerializeField] private GameObject slide;
 
     public void OnMouseDown()
     {
         if (!Singleton.Move)
         {
-            Slide.SetActive(false);
+            slide.SetActive(false);
 
             Singleton.Move = true;
         }

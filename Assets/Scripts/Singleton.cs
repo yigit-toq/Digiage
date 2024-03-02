@@ -6,8 +6,8 @@ public class Singleton
 {
     public static float Speed = 2;
 
-    public static float FireRate = 2f;
-    public static float FireRange = 2f;
+    public static float FireRate = 0.2f;
+    public static float FireRange = 1.6f;
 
     public static float BulletSpeed = 10f;
 

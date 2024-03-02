@@ -1,46 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
+using TMPro;
 
 public class BulletController : MonoBehaviour
 {
     [SerializeField] private GameObject bullet, barrel;
 
-    private float index;
+    [SerializeField] private Animator animator;
 
-    [SerializeField] private Animator gunAnimator;
+    private float time;
 
     private void Start()
     {
-        index = Singleton.FireRate;
+        time = Singleton.FireRate;
     }
 
     private void Update()
     {
         if (Singleton.Move)
         {
-            if (index > Singleton.FireRate)
+            if (time > Singleton.FireRate)
             {
                 GameObject obj = Instantiate(bullet, barrel.transform.position, Quaternion.identity);
 
-                gunAnimator.SetTrigger("Recoil");
+                obj.AddComponent<Bullet>();
+
+                animator.Play("Recoil");
 
                 Handheld.Vibrate();
 
-                obj.AddComponent<Bullet>();
-
-                index = 0;
+                time = 0;
             }
-            index += Time.deltaTime;
+            time += Time.deltaTime;
         }
     }
 
     private class Bullet : MonoBehaviour
     {
-        static int magazineCount = 0;
         static int hexagonCount = 0;
 
         private void Start()
@@ -72,47 +70,9 @@ public class BulletController : MonoBehaviour
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.CompareTag("Magazine"))
-            {
-                if (magazineCount != 6)
-                {
-                    magazineCount++;
-
-                    other.transform.parent.Find("Text").GetComponent<TextMeshPro>().text = magazineCount.ToString();
-                }
-                Destroy(gameObject);
-            }
             if(other.gameObject.CompareTag("YearZone"))
             {
-                switch (other.gameObject.name)
-                {
-                    case "1":
-                        break;
-                    case "2":
-                        break;
-                    case "3":
-                        break;
-                }
                 Destroy(gameObject);
-            }
-        }
-
-        private IEnumerator BounceEffect(Transform transform)
-        {
-            float scaleFactor = 1.2f;
-            float animationTime = 0.25f;
-
-            Vector3 targetScale = transform.localScale * scaleFactor;
-            for (float t = 0.0f; t < animationTime; t += Time.deltaTime)
-            {
-                transform.localScale = Vector3.Lerp(transform.localScale, targetScale, t / animationTime);
-            }
-            yield return null;
-
-            targetScale = transform.localScale / scaleFactor;
-            for (float t = 0.0f; t < animationTime; t += Time.deltaTime)
-            {
-                transform.localScale = Vector3.Lerp(transform.localScale, targetScale, t / animationTime);
             }
         }
     }

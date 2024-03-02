@@ -49,19 +49,24 @@ public class UpgradeArea : MonoBehaviour
             value++;
             upgradeTMP[1].text = sign + Mathf.Abs(value).ToString();
 
+            TweenController.BounceEffect(transform, new Vector3(1.4f, 1.5f, 1f));
+
             Destroy(other.gameObject);
         }
 
         //Deðerler güncellenebilir
         if(other.gameObject.CompareTag("Player"))
         {
-            if (upgradeTMP[0].text == upgradeText[0])
+            if (value >= 100)
             {
-                Singleton.FireRate -= value / 100;
-            }
-            else
-            {
-                Singleton.FireRange += value / 100;
+                if (upgradeTMP[0].text == upgradeText[0])
+                {
+                    Singleton.FireRate -= value / 100;
+                }
+                else
+                {
+                    Singleton.FireRange += value / 100;
+                }
             }
 
             Debug.LogWarning("Rate" + Singleton.FireRate);

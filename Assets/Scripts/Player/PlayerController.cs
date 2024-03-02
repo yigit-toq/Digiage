@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Singleton.Move = false;
+        Debug.LogWarning(collision.transform.parent.gameObject.name);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -67,6 +68,21 @@ public class PlayerController : MonoBehaviour
         if(other.gameObject.CompareTag("GetMagazine"))
         {
             Debug.LogWarning("Þarjör Alýndý");
+
+            TweenController.GetMagazine(other.transform.parent);
+        }
+
+        if (other.gameObject.CompareTag("YearZone"))
+        {
+            if (other.gameObject.name == "1")
+            {
+            }
+            if (other.gameObject.name == "2")
+            {
+            }
+            if (other.gameObject.name == "3")
+            {
+            }
         }
     }
 }

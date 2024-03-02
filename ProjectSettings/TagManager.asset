@@ -11,6 +11,7 @@ TagManager:
   - Hexagon
   - YearZone
   - GetMagazine
+  - Conveyor
   layers:
   - Default
   - TransparentFX

@@ -118,7 +118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 5685206151023357062, guid: 59f4c515d64052840935651c42ef9695, type: 3}
   barrel: {fileID: 5881245433097673480}
-  gunAnimator: {fileID: 579347308016053417}
+  animator: {fileID: 579347308016053417}
 --- !u!1 &5881245433097673480
 GameObject:
   m_ObjectHideFlags: 0
