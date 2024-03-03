@@ -50,7 +50,7 @@ public class UpgradeArea : MonoBehaviour
             upgradeTMP[1].text = sign + Mathf.Abs(value).ToString();
 
             //Nesne yok olduðunda çalýþmasý engellenecek
-            TweenController.BounceEffect(transform, new Vector3(1.4f, 1.5f, 1f));
+            TweenController.BounceEffect(transform, new Vector3(1.4f, 1.5f, 1f), 1.2f, 0.1f);
 
             Destroy(other.gameObject);
         }
@@ -58,13 +58,17 @@ public class UpgradeArea : MonoBehaviour
         //Deðerler güncellenebilir
         if(other.gameObject.CompareTag("Player"))
         {
+            DG.Tweening.DOTween.Kill(gameObject.transform);
+
             if (upgradeTMP[0].text == upgradeText[0])
             {
-                Singleton.FireRate -= value / 4;
+                if (Singleton.FireRate > 50)
+                    Singleton.FireRate -= value / 4;
             }
             else
             {
-                Singleton.FireRange += value / 2;
+                if (Singleton.FireRange > 50)
+                    Singleton.FireRange += value / 2;
             }
             Debug.LogWarning("Range: " + Singleton.FireRange + "Rate: " + Singleton.FireRate);
             Destroy(gameObject);

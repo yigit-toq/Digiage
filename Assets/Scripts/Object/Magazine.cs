@@ -19,7 +19,7 @@ public class Magazine : MonoBehaviour
 
                 transform.parent.Find("Text").GetComponent<TextMeshPro>().text = magazineCount.ToString();
 
-                TweenController.BounceEffect(transform, new Vector3(0.2f, 0.2f, 0.2f));
+                TweenController.BounceEffect(transform, new Vector3(0.2f, 0.2f, 0.2f), 1.2f, 0.1f);
             }
             if (magazineCount == 6)
             {
@@ -39,6 +39,7 @@ public class Magazine : MonoBehaviour
 
         if(other.gameObject.CompareTag("Destroyed"))
         {
+            DG.Tweening.DOTween.Kill(gameObject.transform);
             Destroy(transform.parent.gameObject);
         }
     }

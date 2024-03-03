@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour
     {
         if (Singleton.Move)
             Movement();
+        else
+            playerRigidbody.velocity = Vector3.zero;
     }
 
     private void Movement()

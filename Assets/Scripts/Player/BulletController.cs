@@ -8,8 +8,8 @@ public class BulletController : MonoBehaviour
 {
     [SerializeField] private GameObject bullet, barrel;
 
-    [SerializeField] private Animator animator;
-    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private Animator gunAnimator;
+    [SerializeField] private AudioSource gunAudioSource;
 
     [SerializeField] private AudioClip fireAudio;
 
@@ -17,7 +17,7 @@ public class BulletController : MonoBehaviour
 
     private void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
+        gunAudioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -30,9 +30,9 @@ public class BulletController : MonoBehaviour
 
                 obj.AddComponent<Bullet>();
 
-                audioSource.PlayOneShot(fireAudio);
+                gunAudioSource.PlayOneShot(fireAudio);
 
-                animator.Play("Recoil");
+                gunAnimator.Play("Recoil");
 
                 Handheld.Vibrate();
 
@@ -62,12 +62,18 @@ public class BulletController : MonoBehaviour
             {
                 string str = collision.transform.Find("Text").GetComponent<TextMeshPro>().text;
 
+                TweenController.BounceEffect(collision.transform, new Vector3(0.5f, 0.5f, 0.5f), 1.2f, 0.1f);
+
                 hexagonCount = int.Parse(str);
                 hexagonCount--;
                 str = hexagonCount.ToString();
                 collision.transform.Find("Text").GetComponent<TextMeshPro>().text = str;
                 if (hexagonCount == 0)
+                {
+                    DG.Tweening.DOTween.Kill(collision.gameObject.transform);
+
                     Destroy(collision.gameObject);
+                }
             }
             Destroy(gameObject);
         }
