@@ -2,25 +2,25 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using DG.Tweening;
 
 public class PlayerController : MonoBehaviour
 {
+    private Manager manager;
+
     private Rigidbody playerRigidbody;
 
     [SerializeField] private float startPosition;
 
     [SerializeField] private float horizontalSpeed;
 
-    [SerializeField] private TextMeshPro yearText;
-
     private void Awake()
     {
+        manager = FindObjectOfType<Manager>();
+
         playerRigidbody = GetComponent<Rigidbody>();
 
         horizontalSpeed = 5;
-
-        yearText.text = Singleton.GunYear.ToString();
     }
 
     //Sað ve sola hareket edilmesini saðlayan kod düzenlenecek.
@@ -59,8 +59,24 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Singleton.Move = false;
-        Debug.LogWarning(collision.transform.parent.gameObject.name);
+        if (collision.gameObject.CompareTag("Hexagon"))
+        {
+            manager.Finish.SetActive(true);
+
+            Singleton.Move = false;
+
+            Debug.LogWarning("Game Over");
+        }
+        if (collision.gameObject.CompareTag("Money"))
+        {
+            Debug.Log("Money");
+
+            Singleton.Money += 20;
+
+            //Ekrana yazýlmasý saðlanacak
+
+            Destroy(collision.gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -83,6 +99,17 @@ public class PlayerController : MonoBehaviour
             if (other.gameObject.name == "3")
             {
             }
+        }
+
+        if (other.gameObject.CompareTag("Trap"))
+        {
+            transform.DOMoveZ(transform.position.z - 2f, 0.5f);
+
+            Singleton.GunYear--;
+
+            manager.YearText.text = Singleton.GunYear.ToString();
+
+            Debug.LogWarning("Trap");
         }
     }
 }

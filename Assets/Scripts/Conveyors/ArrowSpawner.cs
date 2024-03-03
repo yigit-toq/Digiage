@@ -10,9 +10,11 @@ public class ArrowSpawner : MonoBehaviour
 
     [SerializeField] private float interval;
 
+    [SerializeField] private int speed;
+
     private void Awake()
     {
-        for (float z = transform.position.z; z < 100; z += interval)
+        for (float z = 0; z < 100; z += interval)
         {
             GameObject clone = Instantiate(arrow, new Vector3(transform.position.x, 0f, z), Quaternion.identity);
 
@@ -22,17 +24,26 @@ public class ArrowSpawner : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void Start()
     {
-        foreach (GameObject obj in arrowList)
-        {
-            if (obj != null)
-            {
-                obj.transform.Translate(2 * Singleton.Speed * Time.deltaTime * Vector3.forward);
+        StartCoroutine(ArrowLoop());
+    }
 
-                if (obj.transform.position.z > 100f)
-                    obj.transform.localPosition = Vector3.zero;
+    private IEnumerator ArrowLoop()
+    {
+        while (true)
+        {
+            foreach (GameObject obj in arrowList)
+            {
+                if (obj != null)
+                {
+                    obj.transform.Translate(speed * Singleton.Speed * Time.deltaTime * Vector3.forward);
+
+                    if (obj.transform.position.z >= 100f)
+                        obj.transform.localPosition = Vector3.zero;
+                }
             }
+            yield return null;
         }
     }
 }

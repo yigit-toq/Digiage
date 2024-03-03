@@ -12,6 +12,8 @@ TagManager:
   - YearZone
   - GetMagazine
   - Conveyor
+  - Destroyed
+  - Money
   layers:
   - Default
   - TransparentFX
@@ -54,4 +56,7 @@ TagManager:
     locked: 0
   - name: Text
     uniqueID: 890623557
+    locked: 0
+  - name: UI
+    uniqueID: 1047866329
     locked: 0

@@ -9,23 +9,28 @@ public class BulletController : MonoBehaviour
     [SerializeField] private GameObject bullet, barrel;
 
     [SerializeField] private Animator animator;
+    [SerializeField] private AudioSource audioSource;
+
+    [SerializeField] private AudioClip fireAudio;
 
     private float time;
 
-    private void Start()
+    private void Awake()
     {
-        time = Singleton.FireRate;
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
     {
         if (Singleton.Move)
         {
-            if (time > Singleton.FireRate)
+            if (time > Singleton.FireRate / 100)
             {
                 GameObject obj = Instantiate(bullet, barrel.transform.position, Quaternion.identity);
 
                 obj.AddComponent<Bullet>();
+
+                audioSource.PlayOneShot(fireAudio);
 
                 animator.Play("Recoil");
 
@@ -43,12 +48,12 @@ public class BulletController : MonoBehaviour
 
         private void Start()
         {
-            Destroy(gameObject, Singleton.FireRange);
+            Destroy(gameObject, Singleton.FireRange / 100);
         }
 
         private void Update()
         {
-            transform.Translate((Singleton.BulletSpeed) * Time.deltaTime * Vector3.forward);
+            transform.Translate(Singleton.BulletSpeed * Time.deltaTime * Vector3.forward);
         }
 
         private void OnCollisionEnter(Collision collision)
@@ -62,9 +67,8 @@ public class BulletController : MonoBehaviour
                 str = hexagonCount.ToString();
                 collision.transform.Find("Text").GetComponent<TextMeshPro>().text = str;
                 if (hexagonCount == 0)
-                    Destroy(collision.transform.parent.gameObject);
+                    Destroy(collision.gameObject);
             }
-
             Destroy(gameObject);
         }
 
