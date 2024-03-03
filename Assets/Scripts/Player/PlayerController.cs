@@ -80,12 +80,10 @@ public class PlayerController : MonoBehaviour
 
             Singleton.Move = false;
 
-            Debug.LogWarning("Game Over");
+            //Debug.LogWarning("Game Over");
         }
         if (collision.gameObject.CompareTag("Money"))
         {
-            Debug.Log("Money");
-
             Singleton.Money += 20;
 
             manager.ScoreText.text = Singleton.Money.ToString();
@@ -108,18 +106,18 @@ public class PlayerController : MonoBehaviour
             if (other.gameObject.GetComponent<SpriteRenderer>().color == Color.green)
             {
                 if (other.gameObject.name == "1")
-                    Singleton.GunYear += 3;
+                    Singleton.GunYear += 30;
                 if (other.gameObject.name == "2")
-                    Singleton.GunYear += 6;
+                    Singleton.GunYear += 60;
                 if (other.gameObject.name == "3")
-                    Singleton.GunYear += 9;
-                if (Singleton.GunYear >= 1810 && Singleton.GunYear < 1840)
+                    Singleton.GunYear += 90;
+                if (Singleton.GunYear >= 1900 && Singleton.GunYear < 2000)
                 {
                     weapons[0].SetActive(false);
                     weapons[1].SetActive(true);
                     bulletController.GunAnimator = weapons[1].GetComponent<Animator>();
                 }
-                if (Singleton.GunYear >= 1840 && Singleton.GunYear < 1860)
+                if (Singleton.GunYear >= 2000 && Singleton.GunYear < 2100)
                 {
                     weapons[1].SetActive(false);
                     weapons[2].SetActive(true);
@@ -140,7 +138,7 @@ public class PlayerController : MonoBehaviour
                 trapCount = 0;
             }
 
-            Singleton.GunYear--;
+            Singleton.GunYear -= 10;
 
             manager.YearText.text = Singleton.GunYear.ToString();
 

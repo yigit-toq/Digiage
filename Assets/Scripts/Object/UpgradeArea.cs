@@ -68,7 +68,7 @@ public class UpgradeArea : MonoBehaviour
             {
                 Singleton.FireRange += value;
             }
-            Debug.LogWarning("Range: " + Singleton.FireRange + "Rate: " + Singleton.FireRate);
+            Debug.LogWarning("Range: " + Singleton.FireRange + " Rate: " + Singleton.FireRate);
             Destroy(gameObject);
         }
     }

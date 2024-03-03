@@ -158,7 +158,6 @@ MonoBehaviour:
   - FIRE RATE
   - FIRE RANGE
   value: 0
-  sign: 68
   colors:
   - serializedVersion: 2
     rgba: 4278255370
@@ -241,7 +240,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 890623557
   m_SortingLayer: 2
-  m_SortingOrder: 10
+  m_SortingOrder: 15
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &8786070867046243287
 MonoBehaviour:
@@ -413,7 +412,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 890623557
   m_SortingLayer: 2
-  m_SortingOrder: 10
+  m_SortingOrder: 15
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &781522730497775637
 MonoBehaviour:
@@ -585,7 +584,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 890623557
   m_SortingLayer: 2
-  m_SortingOrder: 10
+  m_SortingOrder: 15
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &8495856854670629026
 MonoBehaviour:

@@ -21,7 +21,7 @@ public class TrapSpawner : MonoBehaviour
     //Spawner Düzenlenecek
     private void Start()
     {
-        for (float i = transform.position.z + 8; i < transform.position.z + 20; i += 8)
+        for (float i = transform.position.z + 5; i < transform.position.z + 20; i += Random.Range(8, 16))
         {
             int spawnerCount = Random.Range(0, spawners.Length);
 

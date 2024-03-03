@@ -86,6 +86,16 @@ public class BulletController : MonoBehaviour
             {
                 Destroy(gameObject);
             }
+            if(other.gameObject.CompareTag("Hourglass"))
+            {
+                Singleton.GunYear += 2;
+
+                FindObjectOfType<Manager>().YearText.text = Singleton.GunYear.ToString();
+
+                TweenController.BounceEffect(other.transform, Vector3.one * 1.75f, 1.2f, 0.1f);
+
+                Destroy(gameObject);
+            }
         }
     }
 }

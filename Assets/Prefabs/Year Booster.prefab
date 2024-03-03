@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -11679537
-  m_SortingLayer: 1
+  m_SortingLayerID: 890623557
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -5177388603050735206, guid: 8884154dfe85442a3a3578be807dbcdf,
     type: 3}
@@ -162,7 +162,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 890623557
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &8509728918061082101
 MonoBehaviour:
@@ -184,7 +184,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +3 YEARS
+  m_text: +30 YEARS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bdc6856ee363b09489230285da6dbd5c, type: 2}
   m_sharedMaterial: {fileID: 6576796060081407041, guid: bdc6856ee363b09489230285da6dbd5c,
@@ -582,8 +582,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -11679537
-  m_SortingLayer: 1
+  m_SortingLayerID: 890623557
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -5177388603050735206, guid: 8884154dfe85442a3a3578be807dbcdf,
     type: 3}
@@ -1177,7 +1177,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 890623557
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &2322553928674317767
 MonoBehaviour:
@@ -1199,7 +1199,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +6 YEARS
+  m_text: +60 YEARS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bdc6856ee363b09489230285da6dbd5c, type: 2}
   m_sharedMaterial: {fileID: 6576796060081407041, guid: bdc6856ee363b09489230285da6dbd5c,
@@ -1845,8 +1845,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -11679537
-  m_SortingLayer: 1
+  m_SortingLayerID: 890623557
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -5177388603050735206, guid: 8884154dfe85442a3a3578be807dbcdf,
     type: 3}
@@ -2176,7 +2176,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 890623557
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &5270745813049398596
 MonoBehaviour:
@@ -2198,7 +2198,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +9 YEARS
+  m_text: +90 YEARS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bdc6856ee363b09489230285da6dbd5c, type: 2}
   m_sharedMaterial: {fileID: 6576796060081407041, guid: bdc6856ee363b09489230285da6dbd5c,
