@@ -88,7 +88,7 @@ public class BulletController : MonoBehaviour
             }
             if(other.gameObject.CompareTag("Hourglass"))
             {
-                Singleton.GunYear += 2;
+                Singleton.GunYear += 10;
 
                 FindObjectOfType<Manager>().YearText.text = Singleton.GunYear.ToString();
 
