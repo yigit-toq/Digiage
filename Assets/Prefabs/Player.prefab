@@ -200,6 +200,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd3624dff2eb6014ab1f86f42e6dcac2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapons:
+  - {fileID: 2971892758720791457}
+  - {fileID: 6917531728163613516}
+  - {fileID: 6056071539329118936}
   startPosition: 0
   horizontalSpeed: 0
 --- !u!114 &2972416719833070303
@@ -214,15 +218,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eb601ceec427774eafb98a069310972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapons:
-  - {fileID: 2971892758720791457}
-  - {fileID: 6917531728163613516}
-  - {fileID: 6056071539329118936}
   bullet: {fileID: 5685206151023357062, guid: 59f4c515d64052840935651c42ef9695, type: 3}
   barrel: {fileID: 5881245433097673480}
-  gunAnimator: {fileID: 579347308016053417}
-  gunAudioSource: {fileID: 0}
+  gunAudioSource: {fileID: 7854633728766115531}
   fireAudio: {fileID: 8300000, guid: faef1377fecba234fa43a73988fb8787, type: 3}
+  GunAnimator: {fileID: 0}
 --- !u!1 &5881245433097673480
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,7 +331,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 890623557
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 30
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &5143871838825629427
 MonoBehaviour:
@@ -5325,9 +5325,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 890623557
+  m_SortingLayer: 2
+  m_SortingOrder: 20
   m_Sprite: {fileID: -5177388603050735206, guid: 8884154dfe85442a3a3578be807dbcdf,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.5882353}
@@ -5356,7 +5356,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 919f72f896403224a806c34915ffc769,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 919f72f896403224a806c34915ffc769,
         type: 3}
@@ -5491,7 +5491,7 @@ PrefabInstance:
     - target: {fileID: 3928212026758065325, guid: 919f72f896403224a806c34915ffc769,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 3928212026758065325, guid: 919f72f896403224a806c34915ffc769,
         type: 3}

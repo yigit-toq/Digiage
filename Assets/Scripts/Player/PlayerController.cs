@@ -3,22 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
     private Manager manager;
+    private BulletController bulletController;
 
     private Rigidbody playerRigidbody;
+
+    [SerializeField] private GameObject[] weapons;
 
     [SerializeField] private float startPosition;
 
     [SerializeField] private float horizontalSpeed;
 
+    private int trapCount;
+
     private void Awake()
     {
+        bulletController = GetComponent<BulletController>();
         manager = FindObjectOfType<Manager>();
 
         playerRigidbody = GetComponent<Rigidbody>();
+
+        bulletController.GunAnimator = weapons[0].GetComponent<Animator>();
 
         horizontalSpeed = 5;
 
@@ -79,7 +88,7 @@ public class PlayerController : MonoBehaviour
 
             Singleton.Money += 20;
 
-            //Ekrana yazýlmasý saðlanacak
+            manager.ScoreText.text = Singleton.Money.ToString();
 
             Destroy(collision.gameObject);
         }
@@ -99,16 +108,22 @@ public class PlayerController : MonoBehaviour
             if (other.gameObject.GetComponent<SpriteRenderer>().color == Color.green)
             {
                 if (other.gameObject.name == "1")
-                {
                     Singleton.GunYear += 3;
-                }
                 if (other.gameObject.name == "2")
-                {
                     Singleton.GunYear += 6;
-                }
                 if (other.gameObject.name == "3")
-                {
                     Singleton.GunYear += 9;
+                if (Singleton.GunYear >= 1810 && Singleton.GunYear < 1840)
+                {
+                    weapons[0].SetActive(false);
+                    weapons[1].SetActive(true);
+                    bulletController.GunAnimator = weapons[1].GetComponent<Animator>();
+                }
+                if (Singleton.GunYear >= 1840 && Singleton.GunYear < 1860)
+                {
+                    weapons[1].SetActive(false);
+                    weapons[2].SetActive(true);
+                    bulletController.GunAnimator = weapons[2].GetComponent<Animator>();
                 }
                 manager.YearText.text = Singleton.GunYear.ToString();
             }
@@ -118,11 +133,25 @@ public class PlayerController : MonoBehaviour
         {
             transform.DOMoveZ(transform.position.z - 2f, 0.5f);
 
+            trapCount++;
+            if (trapCount == 3)
+            {
+                Destroy(other.gameObject);
+                trapCount = 0;
+            }
+
             Singleton.GunYear--;
 
             manager.YearText.text = Singleton.GunYear.ToString();
 
             Debug.LogWarning("Trap");
+        }
+
+        if (other.gameObject.CompareTag("Finish"))
+        {
+            CinemachineVirtualCamera virtualCamera = Camera.main.transform.parent.GetComponent<CinemachineVirtualCamera>();
+
+            virtualCamera.transform.DORotate(new Vector3(17f, 0f, 0f), 1);
         }
     }
 }

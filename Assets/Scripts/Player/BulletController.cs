@@ -6,21 +6,18 @@ using TMPro;
 
 public class BulletController : MonoBehaviour
 {
-    [SerializeField] private GameObject[] weapons;
-
     [SerializeField] private GameObject bullet, barrel;
 
-    [SerializeField] private Animator gunAnimator;
     [SerializeField] private AudioSource gunAudioSource;
 
     [SerializeField] private AudioClip fireAudio;
+
+    public Animator GunAnimator;
 
     private float time;
 
     private void Awake()
     {
-        gunAudioSource = GetComponent<AudioSource>();
-
         Singleton.FireRate = 50;
         Singleton.FireRange = 100;
     }
@@ -37,7 +34,7 @@ public class BulletController : MonoBehaviour
 
                 gunAudioSource.PlayOneShot(fireAudio);
 
-                gunAnimator.Play("Recoil");
+                GunAnimator.Play("Recoil");
 
                 Handheld.Vibrate();
 
