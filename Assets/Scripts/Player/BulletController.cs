@@ -6,6 +6,8 @@ using TMPro;
 
 public class BulletController : MonoBehaviour
 {
+    [SerializeField] private GameObject[] weapons;
+
     [SerializeField] private GameObject bullet, barrel;
 
     [SerializeField] private Animator gunAnimator;

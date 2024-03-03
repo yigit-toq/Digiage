@@ -2448,6 +2448,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6232616471115229985}
   - component: {fileID: 6576378036156051906}
+  - component: {fileID: 4448006966985384396}
   m_Layer: 0
   m_Name: Year Booster
   m_TagString: Destroyed
@@ -2496,3 +2497,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 0.2}
   m_Center: {x: -2, y: 0.5, z: 0}
+--- !u!114 &4448006966985384396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9147672528807302156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3b46b039f6ac7048a6c8900e0e6008f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderers: []
+  upgradeValue: 0

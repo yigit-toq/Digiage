@@ -14,6 +14,7 @@ TagManager:
   - Conveyor
   - Destroyed
   - Money
+  - Hourglass
   layers:
   - Default
   - TransparentFX

@@ -96,14 +96,21 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("YearZone"))
         {
-            if (other.gameObject.name == "1")
+            if (other.gameObject.GetComponent<SpriteRenderer>().color == Color.green)
             {
-            }
-            if (other.gameObject.name == "2")
-            {
-            }
-            if (other.gameObject.name == "3")
-            {
+                if (other.gameObject.name == "1")
+                {
+                    Singleton.GunYear += 3;
+                }
+                if (other.gameObject.name == "2")
+                {
+                    Singleton.GunYear += 6;
+                }
+                if (other.gameObject.name == "3")
+                {
+                    Singleton.GunYear += 9;
+                }
+                manager.YearText.text = Singleton.GunYear.ToString();
             }
         }
 

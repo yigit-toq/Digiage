@@ -214,9 +214,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eb601ceec427774eafb98a069310972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapons:
+  - {fileID: 2971892758720791457}
+  - {fileID: 6917531728163613516}
+  - {fileID: 6056071539329118936}
   bullet: {fileID: 5685206151023357062, guid: 59f4c515d64052840935651c42ef9695, type: 3}
   barrel: {fileID: 5881245433097673480}
-  gunAnimator: {fileID: 3951457078393145960}
+  gunAnimator: {fileID: 579347308016053417}
   gunAudioSource: {fileID: 0}
   fireAudio: {fileID: 8300000, guid: faef1377fecba234fa43a73988fb8787, type: 3}
 --- !u!1 &5881245433097673480
@@ -5442,7 +5446,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 919f72f896403224a806c34915ffc769,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 919f72f896403224a806c34915ffc769,
         type: 3}
@@ -5715,7 +5719,7 @@ PrefabInstance:
     - target: {fileID: 1287789570531902793, guid: 19717d08e56763b408d7097fecea5b26,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3550649882762366921, guid: 19717d08e56763b408d7097fecea5b26,
         type: 3}
