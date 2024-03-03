@@ -18,6 +18,9 @@ public class BulletController : MonoBehaviour
     private void Awake()
     {
         gunAudioSource = GetComponent<AudioSource>();
+
+        Singleton.FireRate = 50;
+        Singleton.FireRange = 100;
     }
 
     private void Update()

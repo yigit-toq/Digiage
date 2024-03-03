@@ -39,6 +39,29 @@ public class Magazine : MonoBehaviour
 
         if(other.gameObject.CompareTag("Destroyed"))
         {
+            Manager.UpgradeValue += magazineCount;
+
+            Debug.LogWarning(Manager.UpgradeValue);
+
+            if (Manager.UpgradeValue >= 12 && Manager.UpgradeValue <= 18)
+            {
+                SpriteRenderer renderer = other.transform.Find("Zone").transform.Find("1").GetComponent<SpriteRenderer>();
+
+                renderer.color = Color.green;
+            }
+            if (Manager.UpgradeValue >= 18 && Manager.UpgradeValue <= 24)
+            {
+                SpriteRenderer renderer = other.transform.Find("Zone").transform.Find("2").GetComponent<SpriteRenderer>();
+
+                renderer.color = Color.green;
+            }
+            if (Manager.UpgradeValue >= 24)
+            {
+                SpriteRenderer renderer = other.transform.Find("Zone").transform.Find("3").GetComponent<SpriteRenderer>();
+
+                renderer.color = Color.green;
+            }
+
             DG.Tweening.DOTween.Kill(gameObject.transform);
             Destroy(transform.parent.gameObject);
         }

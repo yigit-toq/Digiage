@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody>();
 
         horizontalSpeed = 5;
+
+        Singleton.GunYear = 1800;
     }
 
     //Sað ve sola hareket edilmesini saðlayan kod düzenlenecek.
@@ -63,6 +65,8 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Hexagon"))
         {
+            DOTween.Kill(collision.gameObject.transform);
+
             manager.Finish.SetActive(true);
 
             Singleton.Move = false;
@@ -85,7 +89,7 @@ public class PlayerController : MonoBehaviour
     {
         if(other.gameObject.CompareTag("GetMagazine"))
         {
-            Debug.LogWarning("Þarjör Alýndý");
+            //Debug.LogWarning("Þarjör Alýndý");
 
             TweenController.GetMagazine(other.transform.parent);
         }

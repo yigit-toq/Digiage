@@ -13,9 +13,13 @@ public class Manager : MonoBehaviour
 
     public TextMeshPro YearText;
 
+    public static int UpgradeValue;
+
     private void Awake()
     {
         YearText.text = Singleton.GunYear.ToString();
+
+        UpgradeValue = 0;
     }
 
     public void OnMouseDown()

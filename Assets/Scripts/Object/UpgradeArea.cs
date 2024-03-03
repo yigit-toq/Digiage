@@ -62,13 +62,11 @@ public class UpgradeArea : MonoBehaviour
 
             if (upgradeTMP[0].text == upgradeText[0])
             {
-                if (Singleton.FireRate > 50)
-                    Singleton.FireRate -= value / 4;
+                Singleton.FireRate -= value / 2;
             }
             else
             {
-                if (Singleton.FireRange > 50)
-                    Singleton.FireRange += value / 2;
+                Singleton.FireRange += value;
             }
             Debug.LogWarning("Range: " + Singleton.FireRange + "Rate: " + Singleton.FireRate);
             Destroy(gameObject);
