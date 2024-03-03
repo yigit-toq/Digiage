@@ -8,11 +8,8 @@ using Cinemachine;
 public class PlayerController : MonoBehaviour
 {
     private Manager manager;
-    private BulletController bulletController;
 
     private Rigidbody playerRigidbody;
-
-    [SerializeField] private GameObject[] weapons;
 
     [SerializeField] private float startPosition;
 
@@ -22,12 +19,9 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        bulletController = GetComponent<BulletController>();
         manager = FindObjectOfType<Manager>();
 
-        playerRigidbody = GetComponent<Rigidbody>();
-
-        bulletController.GunAnimator = weapons[0].GetComponent<Animator>();
+        playerRigidbody = GetComponent<Rigidbody>(); 
 
         horizontalSpeed = 5;
 
@@ -111,18 +105,7 @@ public class PlayerController : MonoBehaviour
                     Singleton.GunYear += 60;
                 if (other.gameObject.name == "3")
                     Singleton.GunYear += 90;
-                if (Singleton.GunYear >= 1900 && Singleton.GunYear < 2000)
-                {
-                    weapons[0].SetActive(false);
-                    weapons[1].SetActive(true);
-                    bulletController.GunAnimator = weapons[1].GetComponent<Animator>();
-                }
-                if (Singleton.GunYear >= 2000 && Singleton.GunYear < 2100)
-                {
-                    weapons[1].SetActive(false);
-                    weapons[2].SetActive(true);
-                    bulletController.GunAnimator = weapons[2].GetComponent<Animator>();
-                }
+                FindObjectOfType<Manager>().UpgradeGun();
                 manager.YearText.text = Singleton.GunYear.ToString();
             }
         }

@@ -76,8 +76,8 @@ public class BulletController : MonoBehaviour
 
                     Destroy(collision.gameObject);
                 }
+                Destroy(gameObject);
             }
-            Destroy(gameObject);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -89,6 +89,8 @@ public class BulletController : MonoBehaviour
             if(other.gameObject.CompareTag("Hourglass"))
             {
                 Singleton.GunYear += 10;
+
+                FindObjectOfType<Manager>().UpgradeGun();
 
                 FindObjectOfType<Manager>().YearText.text = Singleton.GunYear.ToString();
 

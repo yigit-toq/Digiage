@@ -62,7 +62,7 @@ public class UpgradeArea : MonoBehaviour
 
             if (upgradeTMP[0].text == upgradeText[0])
             {
-                Singleton.FireRate -= value / 2;
+                Singleton.FireRate -= value / 1.5f;
             }
             else
             {
