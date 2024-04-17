@@ -67,10 +67,11 @@ public class BulletController : MonoBehaviour
                 TweenController.BounceEffect(collision.transform, new Vector3(0.5f, 0.5f, 0.5f), 1.2f, 0.1f);
 
                 hexagonCount = int.Parse(str);
-                hexagonCount--;
+                hexagonCount -= Singleton.FireDamage;
+
                 str = hexagonCount.ToString();
                 collision.transform.Find("Text").GetComponent<TextMeshPro>().text = str;
-                if (hexagonCount == 0)
+                if (hexagonCount <= 0)
                 {
                     DG.Tweening.DOTween.Kill(collision.gameObject.transform);
 

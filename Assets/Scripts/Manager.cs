@@ -26,6 +26,9 @@ public class Manager : MonoBehaviour
         bulletController = FindObjectOfType<BulletController>();
 
         bulletController.GunAnimator = weapons[0].GetComponent<Animator>();
+
+        Singleton.FireDamage = 1;
+        Singleton.Money = 0;
     }
 
     public void OnMouseDown()
@@ -48,15 +51,17 @@ public class Manager : MonoBehaviour
     {
         if (Singleton.GunYear >= 1900 && Singleton.GunYear < 2000)
         {
-            weapons[0].SetActive(false);
-            weapons[1].SetActive(true);
+            TweenController.SpinEffect(weapons, 0);
+
             bulletController.GunAnimator = weapons[1].GetComponent<Animator>();
         }
         if (Singleton.GunYear >= 2000 && Singleton.GunYear < 2100)
         {
-            weapons[1].SetActive(false);
-            weapons[2].SetActive(true);
+            TweenController.SpinEffect(weapons, 1);
+
             bulletController.GunAnimator = weapons[2].GetComponent<Animator>();
+
+            Singleton.FireDamage = 2;
         }
     }
 }

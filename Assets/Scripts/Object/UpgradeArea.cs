@@ -45,8 +45,8 @@ public class UpgradeArea : MonoBehaviour
                 spriteRenderer.color = colors[0];
                 sign = '+';
             }
+            value += Singleton.FireDamage;
 
-            value++;
             upgradeTMP[1].text = sign + Mathf.Abs(value).ToString();
 
             //Nesne yok olduðunda çalýþmasý engellenecek

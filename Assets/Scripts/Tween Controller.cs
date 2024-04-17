@@ -11,6 +11,17 @@ public class TweenController : MonoBehaviour
         transform.DOScale(currentScale, delay).SetDelay(delay);
     }
 
+    public static void SpinEffect(GameObject[] objects, int level)
+    {
+        if (objects != null)
+        {
+            objects[level].transform.DORotate(new Vector3(0f, -180f, 0f), 0.5f);
+            objects[level].SetActive(false);
+            objects[level + 1].SetActive(true);
+            objects[level + 1].transform.DORotate(new Vector3(0f, 0f, 0f), 0.5f);
+        }
+    }
+
     public static void GetMagazine(Transform transform)
     {
         float target = -1.9f;

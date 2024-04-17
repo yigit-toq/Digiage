@@ -11,6 +11,8 @@ public class Singleton
     public static float FireRate = 50f;
     public static float FireRange = 100f;
 
+    public static int FireDamage = 1;
+
     public static float BulletSpeed = 10f;
 
     public static int GunYear = 1800;

@@ -15,7 +15,7 @@ public class Magazine : MonoBehaviour
         {
             if (MagazineCount <= 6)
             {
-                MagazineCount++;
+                MagazineCount += Singleton.FireDamage;
 
                 transform.parent.Find("Text").GetComponent<TextMeshPro>().text = MagazineCount.ToString();
 
